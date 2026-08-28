@@ -1,0 +1,29 @@
+node_modules/
+
+# Next.js
+.next/
+out/
+
+# Production and local env files
+.env
+.env.*
+!.env.example
+
+# TypeScript
+*.tsbuildinfo
+
+# Tests
+coverage/
+test-results/
+playwright-report/
+
+# SQLite/local data
+*.sqlite
+*.sqlite-*
+*.db
+*.db-*
+
+# OS/editor
+.DS_Store
+.idea/
+.vscode/
