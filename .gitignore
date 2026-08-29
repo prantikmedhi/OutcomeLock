@@ -7,6 +7,7 @@ out/
 # Production and local env files
 .env
 .env.*
+env.txt
 !.env.example
 
 # TypeScript
@@ -27,3 +28,4 @@ playwright-report/
 .DS_Store
 .idea/
 .vscode/
+/.claude/worktrees/

@@ -4,8 +4,8 @@ import {
   insufficientEvidenceScenario,
   primaryScenario,
   resolvedScenario,
-} from "@/data/scenarios";
-import { evaluateOutcome } from "@/lib/outcome-engine/evaluate";
+} from "@/backend/data/scenarios";
+import { evaluateOutcome } from "@/backend/outcome-engine/evaluate";
 
 describe("evaluateOutcome", () => {
   it("returns NOT_RESOLVED when the case is only forwarded", () => {

@@ -1,5 +1,9 @@
 import { z } from "zod";
 
+export const problemInputSchema = z.object({
+  problem: z.string().trim().min(1).max(500),
+});
+
 export const intentResultSchema = z.object({
   problemType: z.enum(["PENSION_PAYMENT_MISSING", "UNKNOWN"]),
   desiredOutcome: z.object({
