@@ -30,6 +30,24 @@ This project must not use real citizen data, real government identifiers, real g
 - Playwright
 - Vercel
 
+## Repository Layout
+
+OutcomeLock remains one full-stack Next.js application:
+
+- `frontend/` contains browser UI, styles, presentation data, effects, and end-to-end tests.
+- `backend/` contains API logic, AI integration, outcome rules, server data, scripts, and unit tests.
+- `app/` contains thin adapters required by Next.js App Router.
+
+Run development, tests, and builds from repository root:
+
+```bash
+npm run dev
+npm run typecheck
+npm test
+npm run test:e2e
+npm run build
+```
+
 ## Product Shape
 
 Core flow:

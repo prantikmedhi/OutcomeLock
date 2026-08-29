@@ -1,4 +1,4 @@
-import type { OutcomeCase } from "@/lib/outcome-engine/types";
+import type { OutcomeCase } from "@/backend/outcome-engine/types";
 
 export type DemoScenario = {
   slug: string;

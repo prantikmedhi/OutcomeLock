@@ -4,16 +4,23 @@ import {
   insufficientEvidenceScenario,
   primaryScenario,
   resolvedScenario,
-} from "@/data/scenarios";
-import { fallbackAppeal, fallbackExplanation } from "@/lib/ai/fallbacks";
+} from "@/backend/data/scenarios";
+import { fallbackAppeal, fallbackExplanation } from "@/backend/ai/fallbacks";
 import {
   appealDraftSchema,
   explanationResultSchema,
   intentResultSchema,
-} from "@/lib/ai/schemas";
-import { evaluateOutcome } from "@/lib/outcome-engine/evaluate";
+  problemInputSchema,
+} from "@/backend/ai/schemas";
+import { evaluateOutcome } from "@/backend/outcome-engine/evaluate";
 
 describe("AI schemas", () => {
+  it("validates bounded problem input", () => {
+    expect(problemInputSchema.safeParse({ problem: "Missing pension" }).success).toBe(true);
+    expect(problemInputSchema.safeParse({ problem: 123 }).success).toBe(false);
+    expect(problemInputSchema.safeParse({ problem: "x".repeat(501) }).success).toBe(false);
+  });
+
   it("accepts valid intent structured output", () => {
     expect(
       intentResultSchema.safeParse({

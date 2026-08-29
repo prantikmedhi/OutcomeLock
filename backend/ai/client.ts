@@ -56,6 +56,8 @@ export function getAiClient(): AiClientConfig | null {
         apiKey,
         apiVersion,
         deployment,
+        maxRetries: 0,
+        timeout: 15_000,
       }),
       model: deployment,
     };
@@ -68,7 +70,7 @@ export function getAiClient(): AiClientConfig | null {
   }
 
   return {
-    client: new OpenAI({ apiKey }),
+    client: new OpenAI({ apiKey, maxRetries: 0, timeout: 15_000 }),
     model: process.env.OPENAI_MODEL ?? "gpt-5.6-sol",
   };
 }

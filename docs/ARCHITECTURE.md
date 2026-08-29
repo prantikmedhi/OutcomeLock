@@ -15,28 +15,28 @@ The product needs:
 
 It does not need microservices or extra infrastructure.
 
-## Preferred Structure
+## Repository Structure
 
 ```text
-app/
-  page.tsx
-  intake/
-  outcome/
-  grievance/
-  appeal/
-  timeline/
-components/
-lib/
-  ai/
-  outcome-engine/
-  db/
-  validation/
-data/
-tests/
+app/                 # thin Next.js page, layout, and route adapters
+frontend/
+  components/        # browser UI, motion, effects, and primitives
+  data/              # browser-safe presentation fixtures
+  lib/               # client API helpers and UI utilities
+  styles/            # global styles
+  tests/e2e/         # Playwright journeys
+backend/
+  api/               # framework-independent request handlers
+  ai/                # server-only AI client, schemas, and fallbacks
+  contracts/         # public API response types
+  data/              # authoritative server scenarios
+  outcome-engine/    # deterministic outcome rules
+  scripts/           # server/provider smoke tests
+  tests/unit/        # Vitest tests
 docs/
 ```
 
-Adjust only if the implementation has a clear reason.
+Keep one root package, one Next.js server, one build, and one Vercel deployment. Files under `app/` must stay thin because Next.js requires its route conventions there. Frontend runtime code must not import server modules; type-only imports from `backend/contracts/` are allowed.
 
 ## Layers
 
@@ -46,7 +46,7 @@ React components render the journey, collect input, and display status. Componen
 
 ### Outcome Engine
 
-`lib/outcome-engine/` owns deterministic evaluation.
+`backend/outcome-engine/` owns deterministic evaluation.
 
 It should accept structured case data and return:
 
@@ -58,7 +58,7 @@ It should accept structured case data and return:
 
 ### AI Layer
 
-`lib/ai/` owns server-side OpenAI calls:
+`backend/ai/` owns server-side OpenAI calls:
 
 - intent extraction
 - explanation generation

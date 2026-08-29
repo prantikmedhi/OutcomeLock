@@ -64,6 +64,14 @@ Use this stack unless there is a strong technical reason not to:
 
 Keep the app in a single Next.js repository.
 
+Repository ownership:
+
+- `frontend/` owns browser UI, styles, presentation fixtures, effects, and Playwright tests.
+- `backend/` owns API logic, AI calls, deterministic outcome rules, server data, provider scripts, and unit tests.
+- `app/` contains only thin Next.js page, layout, asset, and route adapters.
+- Keep one root package, one development server, one build, and one Vercel deployment.
+- Frontend runtime code must not import backend runtime modules. Type-only imports from `backend/contracts/` are allowed.
+
 Do not introduce:
 
 - Python or FastAPI

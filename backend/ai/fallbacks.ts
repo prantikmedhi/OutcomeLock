@@ -1,5 +1,5 @@
-import type { OutcomeEvaluation } from "@/lib/outcome-engine/types";
-import type { AppealDraft, ExplanationResult, IntentResult } from "./schemas";
+import type { AppealDraft, ExplanationResult, IntentResult } from "@/backend/contracts/api";
+import type { OutcomeEvaluation } from "@/backend/outcome-engine/types";
 
 const summaryByStatus: Record<OutcomeEvaluation["status"], string> = {
   RESOLVED: "We found proof that your pension reached your account.",
@@ -27,6 +27,7 @@ export function fallbackExplanation(
   evaluation: OutcomeEvaluation,
 ): ExplanationResult {
   return {
+    status: evaluation.status,
     summary: summaryByStatus[evaluation.status],
     requestedOutcome: evaluation.requestedOutcome,
     governmentAction: evaluation.governmentActionSummary,
